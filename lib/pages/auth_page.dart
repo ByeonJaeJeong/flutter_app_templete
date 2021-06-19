@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_templete/provider/page_notifier.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+
 
 class AuthPage extends Page {
   static final pageName = "AuthPage";
@@ -70,9 +72,9 @@ class _AuthWidgetState extends State<AuthWidget> {
                           onPressed: () {
                             setState(() {
                               isRegister = false;
-                              _cPasswordController.text="";
-                              _passwordController.text="";
-                              _emailController.text="";
+                              _cPasswordController.text = "";
+                              _passwordController.text = "";
+                              _emailController.text = "";
                             });
                           },
                           child: Text("Login",
@@ -87,9 +89,9 @@ class _AuthWidgetState extends State<AuthWidget> {
                           onPressed: () {
                             setState(() {
                               isRegister = true;
-                              _cPasswordController.text="";
-                              _passwordController.text="";
-                              _emailController.text="";
+                              _cPasswordController.text = "";
+                              _passwordController.text = "";
+                              _emailController.text = "";
                             });
                           },
                           child: Text("Register",
@@ -105,19 +107,19 @@ class _AuthWidgetState extends State<AuthWidget> {
                   SizedBox(
                     height: 16,
                   ),
-                  buildTextFormField("Email Address", _emailController),
+                  buildTextFormField("Email Address", _emailController,false),
                   SizedBox(
                     height: 16,
                   ),
-                  buildTextFormField("Password", _passwordController),
+                  buildTextFormField("Password", _passwordController,true),
                   SizedBox(
-                    height: 16,
+                    height: 16
                   ),
                   AnimatedContainer(
                       child: buildTextFormField(
-                          "Conform Password", _cPasswordController),
+                          "Conform Password", _cPasswordController,true),
                       duration: _duration,
-                      height: isRegister ? 66 : 0,
+                      height: isRegister ? 80 : 0,
                       curve: _curve),
                   SizedBox(
                     height: 16,
@@ -125,10 +127,22 @@ class _AuthWidgetState extends State<AuthWidget> {
                   FlatButton(
                     onPressed: () {
                       if (_formkey.currentState.validate()) {
-                        isRegister?
-                        print("회원가입 완료"):
-                            Provider.of<PageNotifier>(context,listen: false).goToMain();
-
+                        setState(() {
+                          if(isRegister) {
+                            isRegister=false;
+                            _cPasswordController.text = "";
+                            _passwordController.text = "";
+                            _emailController.text = "";
+                            Fluttertoast.showToast(msg: "this is Toast Message",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1);
+                          }
+                          else {
+                            Provider.of<PageNotifier>(context, listen: false)
+                                .goToMain();
+                          }
+                        });
                       }
                     },
                     child: Text(isRegister ? "Register" : "Login"),
@@ -151,13 +165,16 @@ class _AuthWidgetState extends State<AuthWidget> {
                     alignment: MainAxisAlignment.center,
                     children: [
                       _buildSocialButton('assets/google_icon.png', () {
-                        Provider.of<PageNotifier>(context,listen: false).goToMain();
+                        Provider.of<PageNotifier>(context, listen: false)
+                            .goToMain();
                       }),
                       _buildSocialButton('assets/instagram_icon.png', () {
-                        Provider.of<PageNotifier>(context,listen: false).goToMain();
+                        Provider.of<PageNotifier>(context, listen: false)
+                            .goToMain();
                       }),
                       _buildSocialButton('assets/facebook_icon.png', () {
-                        Provider.of<PageNotifier>(context,listen: false).goToMain();
+                        Provider.of<PageNotifier>(context, listen: false)
+                            .goToMain();
                       })
                     ],
                   )
@@ -182,16 +199,23 @@ class _AuthWidgetState extends State<AuthWidget> {
   }
 
   TextFormField buildTextFormField(
-      String labelText, TextEditingController controller) {
+      String labelText, TextEditingController controller,bool obscureText) {
+    if(isRegister==false && controller == _cPasswordController)
+      return null;
     return TextFormField(
       cursorColor: Colors.white,
+      obscureText: obscureText,
       controller: controller,
       validator: (text) {
+
         //데이터 체킹할때 사용
-        if (text == null || text.isEmpty && controller != _cPasswordController) {
+        if (text == null ||
+            text.isEmpty && controller != _cPasswordController) {
           return "입력창이 비어있어요!";
         }
-        if(controller == _cPasswordController && isRegister && (text == null || text.isEmpty)){
+        if (controller == _cPasswordController &&
+            isRegister &&
+            (text == null || text.isEmpty)) {
           return "비밀번호 확인부분 다시 입력하세요!!";
         }
         return null; //널을 반환하면 아무것도 없다고 알려줌
