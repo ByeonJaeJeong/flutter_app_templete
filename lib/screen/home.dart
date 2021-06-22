@@ -42,41 +42,48 @@ class _HomeState extends State<Home> {
           })*/
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[ Container(
-            color: Color(0xFFDF0F4),
-            height: MediaQuery.of(context).size.height/2,
-            child: Swiper(
-              itemHeight: 200,
-              autoplay: true,
-              pagination: SwiperPagination(),
-              itemCount: imgList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Image.network(imgList[index]);
-              },
-            ),
-          )
-        ,Row(
-            mainAxisAlignment:MainAxisAlignment.spaceAround ,
-            children: [
-              Container(
-              child: FlatButton(
-                child: Image.asset("assets/mc_order_check_btn.png",scale:0.75),
-                padding: EdgeInsets.all(0),
-                onPressed: (){},
-              ),
-              ),
-              Container(
-                child: FlatButton(
-                  padding: EdgeInsets.all(0),
-                  child: Image.asset("assets/mc_order_btn.png",scale: 0.75,),
-                  onPressed: (){},
+      body: SafeArea(
+
+        child: ListView(
+          reverse: true,
+          children: [Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[ Container(
+                color: Color(0xFFDF0F4),
+                height: 290,
+                child: Swiper(
+                  itemHeight: 500,
+                  autoplay: true,
+                  pagination: SwiperPagination(),
+                  itemCount: imgList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Image.network(imgList[index]);
+                  },
                 ),
               )
+            ,Row(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                  child: FlatButton(
+                    child: Image.asset("assets/mc_order_check_btn.png",width:MediaQuery.of(context).size.width/2,fit: BoxFit.fitWidth,),
+                    padding: EdgeInsets.all(0),
+                    onPressed: (){},
+                  ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FlatButton(
+                      padding: EdgeInsets.all(0),
+                      child: Image.asset("assets/mc_order_btn.png",width:MediaQuery.of(context).size.width/2,fit: BoxFit.fitWidth,),
+                      onPressed: (){},
+                    ),
+                  )
+                ],
+              )
             ],
-          )
-        ],
+          )].reversed.toList(),
+        ),
       ),
     );
   }
