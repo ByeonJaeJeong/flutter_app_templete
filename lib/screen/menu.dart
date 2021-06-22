@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
+
 class Menu extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _MenuState();
 }
 
 class _MenuState extends State<Menu> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +15,7 @@ class _MenuState extends State<Menu> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         backgroundColor: Colors.white,
-        leadingWidth: 300,
+        leadingWidth: 200.0,
         leading: FlatButton(
             onPressed: () => {},
             child: Row(

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app_templete/pages/my_home.dart';
+import 'package:flutter_app_templete/pages/bottomNavigation.dart';
 
 class PageNotifier extends ChangeNotifier{
   String _currentPage = MyHomePage.pageName;

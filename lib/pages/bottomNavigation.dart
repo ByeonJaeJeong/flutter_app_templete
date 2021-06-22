@@ -41,9 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
           child: _pages[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.grey,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white.withOpacity(.60),
+        backgroundColor: Colors.red,
+        selectedItemColor: Colors.grey,
+        unselectedItemColor: Colors.grey.withOpacity(.60),
         selectedFontSize: 14,
         unselectedFontSize: 14,
         currentIndex:  _selectedIndex,
