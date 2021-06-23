@@ -2,7 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_templete/provider/page_notifier.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+/*
+// Create storage
+final storage = new FlutterSecureStorage();
+
+// Read value
+String value = await storage.read(key: key);
+
+// Read all values
+Map<String, String> allValues = await storage.readAll();
+
+// Delete value
+await storage.delete(key: key);
+
+// Delete all
+await storage.deleteAll();
+
+// Write value
+await storage.write(key: key, value: value);
+*/
 
 class AuthPage extends Page {
   static final pageName = "AuthPage";
@@ -23,6 +43,7 @@ class AuthWidget extends StatefulWidget {
 
 class _AuthWidgetState extends State<AuthWidget> {
   GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  static final storage = new FlutterSecureStorage();//flutter_secure_storage 사용을 위한 초기화 작업
 
   static final double cornerRadius = 8.0;
   OutlineInputBorder _border = OutlineInputBorder(
@@ -124,10 +145,9 @@ class _AuthWidgetState extends State<AuthWidget> {
                   SizedBox(
                     height: 16,
                   ),
-                  FlatButton(
-                    onPressed: () {
+                      FlatButton(
+                      onPressed: () async {
                       if (_formkey.currentState.validate()) {
-                        setState(() {
                           if(isRegister) {
                             isRegister=false;
                             _cPasswordController.text = "";
@@ -139,10 +159,10 @@ class _AuthWidgetState extends State<AuthWidget> {
                             timeInSecForIosWeb: 1);
                           }
                           else {
-                            Provider.of<PageNotifier>(context, listen: false)
-                                .goToMain();
+                            storage.write(key: "loginId", value: _emailController.text.toString());
+                           Navigator.pop(context);
                           }
-                        });
+
                       }
                     },
                     child: Text(isRegister ? "Register" : "Login"),
@@ -165,16 +185,13 @@ class _AuthWidgetState extends State<AuthWidget> {
                     alignment: MainAxisAlignment.center,
                     children: [
                       _buildSocialButton('assets/google_icon.png', () {
-                        Provider.of<PageNotifier>(context, listen: false)
-                            .goToMain();
+                        Navigator.pop(context);
                       }),
                       _buildSocialButton('assets/instagram_icon.png', () {
-                        Provider.of<PageNotifier>(context, listen: false)
-                            .goToMain();
+                        Navigator.pop(context);
                       }),
                       _buildSocialButton('assets/facebook_icon.png', () {
-                        Provider.of<PageNotifier>(context, listen: false)
-                            .goToMain();
+                        Navigator.pop(context);
                       })
                     ],
                   )

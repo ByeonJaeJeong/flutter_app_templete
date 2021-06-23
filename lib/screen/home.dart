@@ -43,21 +43,20 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: SafeArea(
-
         child: ListView(
           reverse: true,
           children: [Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[ Container(
                 color: Color(0xFFDF0F4),
-                height: 290,
+                height: MediaQuery.of(context).size.height/2,
                 child: Swiper(
                   itemHeight: 500,
                   autoplay: true,
                   pagination: SwiperPagination(),
                   itemCount: imgList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Image.network(imgList[index]);
+                    return Image.network(imgList[index],fit: BoxFit.fitWidth,);
                   },
                 ),
               )

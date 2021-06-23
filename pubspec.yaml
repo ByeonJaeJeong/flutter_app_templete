@@ -29,10 +29,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  provider: ^4.3.3
-  fluttertoast: ^4.0.1
-  flutter_swiper: ^1.1.6
-  flutter_svg: ^0.9.0+1
+  provider: ^4.3.3 #화면이동
+  fluttertoast: ^4.0.1 #토스트 메세지
+  flutter_swiper: ^1.1.6 #화면이동
+  flutter_svg: ^0.9.0+1 #svg파일 이미지 변경
+  flutter_secure_storage: ^3.3.3 #로그인 정보
 
 dev_dependencies:
   flutter_test:
