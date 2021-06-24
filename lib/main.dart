@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_templete/login/auth_page.dart';
-import 'package:flutter_app_templete/pages/bottomNavigation.dart';
-import 'package:flutter_app_templete/provider/page_notifier.dart';
 import 'package:flutter_app_templete/screen/home.dart';
 import 'package:flutter_app_templete/screen/menu.dart';
 import 'package:flutter_app_templete/screen/more.dart';
@@ -34,19 +32,15 @@ class BottomNavi extends StatefulWidget{
 
 }
 class _BottomNaviState extends State<BottomNavi>{
-  int _counter = 0;
-  int _currenttIndex = 0;
+  static int _currenttIndex;
+  String title;
+
   final List<Widget> _pages=[Home(),Menu(),Star(),OrderCheck(),More()];
+
 
   void _onTab(int index){
     setState(() {
       _currenttIndex= index;
-    });
-  }
-
-  void _incrementCounter(){
-    setState(() {
-      _counter++;
     });
   }
 

@@ -7,7 +7,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-
+  final pageName="Menu";
 
   @override
   Widget build(BuildContext context) {

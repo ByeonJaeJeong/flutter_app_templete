@@ -11,13 +11,12 @@ class More extends StatefulWidget {
 class _MoreState extends State<More> {
   static final storage = new FlutterSecureStorage();
   static String userInfo = "";
-  static bool login = false;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _asyncMethod();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+    await _asyncMethod();
     });
   }
 
@@ -25,9 +24,7 @@ class _MoreState extends State<More> {
     //read 함수를 통하여 key값에 맞는 정보를 불러오게 됩니다. 이때 불러오는 결과의 타입은 String 타입임을 기억해야 합니다.
     //(데이터가 없을때는 null을 반환을 합니다.)
     userInfo = await storage.read(key: "loginId");
-    print(userInfo.toString());
-     if(userInfo != null || userInfo.isNotEmpty)
-      login = true;
+    print("userId:" + userInfo);
   }
 
   @override
@@ -66,7 +63,7 @@ class _MoreState extends State<More> {
               thickness: 1,
             ),
             Visibility(
-              visible: login,
+              visible: (userInfo == null) ? true : false,
               child: Container(
                 child: FlatButton(
                   onPressed: () {
@@ -80,19 +77,20 @@ class _MoreState extends State<More> {
               ),
             ),
             Visibility(
-              visible: !login,
+              visible: (userInfo == null) ? false : true,
               child: Container(
                 child: FlatButton(
-                  onPressed: () {
-                    storage.delete(key: "loginId");
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) =>BottomNavi())
-                    );
+                  onPressed: () async {
+                    await storage.delete(key: "loginId");
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    BottomNavi()));
 
-                  },
+                    },
                   child: Row(
-                    children: [Icon(Icons.arrow_circle_down), Text(" 로그아웃")],
+                    children: [Icon(Icons.arrow_circle_down), Text("로그아웃")],
                   ),
                 ),
               ),

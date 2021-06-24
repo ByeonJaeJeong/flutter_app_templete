@@ -8,6 +8,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final pageName = "Home";
+
   final List<String> imgList = [
     "https://www.mcdelivery.co.kr/kr//static/1623826717670/assets/82/banners/landing_66461_mWOS.jpg?mWOS",
     "https://www.mcdelivery.co.kr/kr//static/1623826717670/assets/82/banners/landing_66395_mWOS.jpg?mWOS",

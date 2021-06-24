@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_templete/provider/page_notifier.dart';
+import 'package:flutter_app_templete/main.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -159,8 +160,8 @@ class _AuthWidgetState extends State<AuthWidget> {
                             timeInSecForIosWeb: 1);
                           }
                           else {
-                            storage.write(key: "loginId", value: _emailController.text.toString());
-                           Navigator.pop(context);
+                           await storage.write(key: "loginId", value: _emailController.text.toString());
+                           Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>BottomNavi()));
                           }
 
                       }
