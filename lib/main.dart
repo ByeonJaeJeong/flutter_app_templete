@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title : "Flutter Bottomnavigation",
+      title : "Flutter BottomNavigation",
       theme:  ThemeData(
         primarySwatch: Colors.blue
       ),
@@ -32,7 +32,7 @@ class BottomNavi extends StatefulWidget{
 
 }
 class _BottomNaviState extends State<BottomNavi>{
-  static int _currenttIndex;
+  static int _currenttIndex =0;
   String title;
 
   final List<Widget> _pages=[Home(),Menu(),Star(),OrderCheck(),More()];

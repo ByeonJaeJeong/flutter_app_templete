@@ -16,15 +16,17 @@ class _MoreState extends State<More> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-    await _asyncMethod();
+      await _asyncMethod();
     });
   }
 
   _asyncMethod() async {
     //read 함수를 통하여 key값에 맞는 정보를 불러오게 됩니다. 이때 불러오는 결과의 타입은 String 타입임을 기억해야 합니다.
     //(데이터가 없을때는 null을 반환을 합니다.)
-    userInfo = await storage.read(key: "loginId");
-    print("userId:" + userInfo);
+    String readId = await storage.read(key: "loginId");
+    setState(() {
+      userInfo = readId;
+    });
   }
 
   @override
@@ -52,50 +54,117 @@ class _MoreState extends State<More> {
         ],
       ),
       body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.all(10),
-          children: [
-            Container(
-              child: Text("계정 설정"),
-            ),
-            Divider(
-              height: 20,
-              thickness: 1,
-            ),
-            Visibility(
-              visible: (userInfo == null) ? true : false,
-              child: Container(
+          child: ListView(
+            padding: EdgeInsets.all(10),
+            children: [
+              Container(
+                child: Text("맥딜리버리"),
+              ),
+              Divider(
+                height: 20,
+                thickness: 1,
+              ),
+              Container(
                 child: FlatButton(
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => AuthWidget()));
                   },
                   child: Row(
-                    children: [Icon(Icons.arrow_circle_up), Text("  로그인/회원가입")],
+                    children: [
+                      Icon(Icons.account_circle_outlined, color: Colors.blue),
+                      Text("주문내역")
+                    ],
                   ),
                 ),
               ),
-            ),
-            Visibility(
-              visible: (userInfo == null) ? false : true,
-              child: Container(
+              Container(
+                child: Text("계정 설정"),
+              ),
+              Divider(
+                height: 20,
+                thickness: 1,
+              ),
+              Container(
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AuthWidget()));
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.account_circle_outlined, color: Colors.blue),
+                      Text("내정보")
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AuthWidget()));
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.library_books, color: Colors.blue),
+                      Text("주소록")
+                    ],
+                  ),
+                ),
+              ),
+
+              Container(
+                child: Text("이야기"),
+              ),
+              Divider(
+                height: 20,
+                thickness: 1,
+              ),
+              Container(
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AuthWidget()));
+                  },
+                  child: Row(
+                    children: [Icon(Icons.arrow_circle_up), Text("맥도날드 이야기")],
+                  ),
+                ),
+              ),
+              Container(
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AuthWidget()));
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.info, color: Colors.blue),
+                      Text("영양정보/원산지정보")
+                    ],
+                  ),
+                ),
+              ),
+              Container(
                 child: FlatButton(
                   onPressed: () async {
                     await storage.delete(key: "loginId");
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    BottomNavi()));
-
-                    },
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                BottomNavi()));
+                  },
                   child: Row(
                     children: [Icon(Icons.arrow_circle_down), Text("로그아웃")],
                   ),
                 ),
               ),
-            )
-          ],
+              Container(
+                child: Text("3.2.11(KR50)"),
+              ),
+            ],
         ),
       ),
     );

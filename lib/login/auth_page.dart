@@ -185,14 +185,20 @@ class _AuthWidgetState extends State<AuthWidget> {
                   ButtonBar(
                     alignment: MainAxisAlignment.center,
                     children: [
-                      _buildSocialButton('assets/google_icon.png', () {
-                        Navigator.pop(context);
+                      _buildSocialButton('assets/google_icon.png', () async{
+                        await storage.write(key: "loginId", value: "google");
+                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>BottomNavi()));
+
                       }),
-                      _buildSocialButton('assets/instagram_icon.png', () {
-                        Navigator.pop(context);
+                      _buildSocialButton('assets/instagram_icon.png', () async{
+                        await storage.write(key: "loginId", value: "insta");
+                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>BottomNavi()));
+
                       }),
-                      _buildSocialButton('assets/facebook_icon.png', () {
-                        Navigator.pop(context);
+                      _buildSocialButton('assets/facebook_icon.png', () async{
+                        await storage.write(key: "loginId", value: "facebook");
+                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>BottomNavi()));
+
                       })
                     ],
                   )
