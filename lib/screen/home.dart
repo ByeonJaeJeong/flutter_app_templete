@@ -23,7 +23,9 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Row(children: <Widget>[
+        leadingWidth: 300,
+        leading: Row(children: <Widget>[
+          SizedBox(width: 20),
           Image.asset(
             "assets/Mac.png",
             scale: 4,

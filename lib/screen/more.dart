@@ -36,7 +36,9 @@ class _MoreState extends State<More> {
         backgroundColor: Colors.white,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Row(children: <Widget>[
+        leadingWidth: 200,
+        leading: Row(children: <Widget>[
+          SizedBox(width: 20),
           Image.asset(
             "assets/Mac.png",
             scale: 4,
@@ -53,118 +55,151 @@ class _MoreState extends State<More> {
           })*/
         ],
       ),
-      body: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.all(10),
-            children: [
-              Container(
-                child: Text("맥딜리버리"),
-              ),
-              Divider(
-                height: 20,
-                thickness: 1,
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AuthWidget()));
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.account_circle_outlined, color: Colors.blue),
-                      Text("주문내역")
-                    ],
+      body: Container(
+        padding: EdgeInsets.only(left: 15,top: 10,right: 15,bottom: 5),
+        child: Column(
+          children: [Visibility(
+            visible: (userInfo == null)?false:true,
+            child: Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                      child: Text(
+                    "맥딜리버리",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  )),
+                  Divider(
+                    height: 10,
+                    thickness: 1,
                   ),
-                ),
-              ),
-              Container(
-                child: Text("계정 설정"),
-              ),
-              Divider(
-                height: 20,
-                thickness: 1,
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AuthWidget()));
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.account_circle_outlined, color: Colors.blue),
-                      Text("내정보")
-                    ],
+                  ListTile(
+                    leading: Icon(Icons.account_circle_outlined),
+                    title: Text("주문내역"),
+                    onTap: () {},
                   ),
-                ),
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AuthWidget()));
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.library_books, color: Colors.blue),
-                      Text("주소록")
-                    ],
+                  Container(
+                      child: Text(
+                    "계정 설정",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  )),
+                  Divider(
+                    height: 10,
+                    thickness: 1,
                   ),
-                ),
-              ),
+                  ListTile(
+                    leading: Icon(Icons.account_circle_outlined),
+                    title: Text("내정보"),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.library_books),
+                    title: Text("주소록"),
+                    onTap: () {},
+                  ),
+                  Container(
+                      child: Text(
+                    "이야기",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  )),
+                  Divider(
+                    height: 10,
+                    thickness: 1,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.account_circle_outlined),
+                    title: Text("맥도날드이야기"),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.info),
+                    title: Text("영양정보/원산지정보"),
+                    onTap: () {},
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.logout),
+                    title: Text("로그아웃"),
+                    onTap: () async {
+                        await storage.delete(key: "loginId");
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    BottomNavi()));
 
-              Container(
-                child: Text("이야기"),
-              ),
-              Divider(
-                height: 20,
-                thickness: 1,
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AuthWidget()));
-                  },
-                  child: Row(
-                    children: [Icon(Icons.arrow_circle_up), Text("맥도날드 이야기")],
+                    },
                   ),
-                ),
+                  Text("3.2.11(KR50)",style: TextStyle(color: Colors.grey),)
+                ],
               ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AuthWidget()));
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.info, color: Colors.blue),
-                      Text("영양정보/원산지정보")
-                    ],
-                  ),
-                ),
+            ),
+          ),
+            Visibility(
+              visible: (userInfo == null)?true:false,
+              child: Expanded(child: ListView(
+               children: <Widget>[
+                 Container(
+                     child: Text(
+                       "계정 설정",
+                       style: TextStyle(
+                           fontSize: 15,
+                           fontWeight: FontWeight.bold,
+                           color: Colors.grey),
+                     )),
+                 Divider(
+                   height: 10,
+                   thickness: 1,
+                 ),
+                 ListTile(
+                   leading: Icon(Icons.login),
+                   title: Text("로그인/회원가입"),
+                   onTap: () {
+                     Navigator.push(context,
+                         MaterialPageRoute(builder: (context) => AuthWidget()));
+                   },
+                 ),
+                 Container(
+                     child: Text(
+                       "계정 설정",
+                       style: TextStyle(
+                           fontSize: 15,
+                           fontWeight: FontWeight.bold,
+                           color: Colors.grey),
+                     )),
+                 Divider(
+                   height: 10,
+                   thickness: 1,
+                 ),
+                 ListTile(
+                   leading: Icon(Icons.account_circle_outlined),
+                   title: Text("맥도날드 이야기"),
+                   onTap: () {},
+                 ),
+                 ListTile(
+                   leading: Icon(Icons.info),
+                   title: Text("영양정보/원산지정보"),
+                   onTap: () {},
+                 ),
+                 SizedBox(
+                   height: 30,
+                 ),
+                 Text("3.2.11(KR50)",style: TextStyle(color: Colors.grey))
+               ],
+              )
               ),
-              Container(
-                child: FlatButton(
-                  onPressed: () async {
-                    await storage.delete(key: "loginId");
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                BottomNavi()));
-                  },
-                  child: Row(
-                    children: [Icon(Icons.arrow_circle_down), Text("로그아웃")],
-                  ),
-                ),
-              ),
-              Container(
-                child: Text("3.2.11(KR50)"),
-              ),
-            ],
+            )
+          ],
         ),
       ),
     );
