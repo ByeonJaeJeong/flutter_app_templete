@@ -22,6 +22,8 @@ class _MenuState extends State<Menu> {
               children: <Widget>[Icon(Icons.chevron_left), Text("배달 주소",style: TextStyle(color: Colors.black,fontSize: 18))],
             )),
       ),
+      body:
+      ,
       // Here we take the value from the MyHomePage object that was created by
       // the App.build method, and use it to set our appbar title.
     );
