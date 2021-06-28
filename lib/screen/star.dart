@@ -20,11 +20,13 @@ class _StarState extends State<Star> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leadingWidth: 300,
-        leading: FlatButton(
-            onPressed: () => {},
-            child: Row(
-              children: <Widget>[Icon(Icons.chevron_left), Text("즐겨찾기",style: TextStyle(color: Colors.black,fontSize: 18))],
-            )),
+        centerTitle: true,
+        title: Text("즐겨찾기",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold)),
+       automaticallyImplyLeading: true,
       ),
     );
   }

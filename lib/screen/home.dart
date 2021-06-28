@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_templete/screen/star.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
+import '../main.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -71,7 +74,9 @@ class _HomeState extends State<Home> {
                   child: FlatButton(
                     child: Image.asset("assets/mc_order_check_btn.png",width:MediaQuery.of(context).size.width/2,fit: BoxFit.fitWidth,),
                     padding: EdgeInsets.all(0),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pushReplacement(context,  CupertinoPageRoute(builder: (context)=>BottomNavi(3)));
+                    },
                   ),
                   ),
                   Container(
@@ -79,7 +84,9 @@ class _HomeState extends State<Home> {
                     child: FlatButton(
                       padding: EdgeInsets.all(0),
                       child: Image.asset("assets/mc_order_btn.png",width:MediaQuery.of(context).size.width/2,fit: BoxFit.fitWidth,),
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.pushReplacement(context,  CupertinoPageRoute(builder: (context)=>BottomNavi(1)));
+                      },
                     ),
                   )
                 ],

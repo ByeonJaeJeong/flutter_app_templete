@@ -58,40 +58,21 @@ class _MoreState extends State<More> {
       body: Container(
         padding: EdgeInsets.only(left: 15,top: 10,right: 15,bottom: 5),
         child: Column(
-          children: [Visibility(
+          children: [
+            Visibility(
             visible: (userInfo == null)?false:true,
             child: Expanded(
               child: ListView(
                 children: <Widget>[
-                  Container(
-                      child: Text(
-                    "맥딜리버리",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                  )),
-                  Divider(
-                    height: 10,
-                    thickness: 1,
-                  ),
+                  setTitle("맥딜리버리"),
+                  divider(),
                   ListTile(
                     leading: Icon(Icons.account_circle_outlined),
                     title: Text("주문내역"),
                     onTap: () {},
                   ),
-                  Container(
-                      child: Text(
-                    "계정 설정",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                  )),
-                  Divider(
-                    height: 10,
-                    thickness: 1,
-                  ),
+                 setTitle("계정설정"),
+                  divider(),
                   ListTile(
                     leading: Icon(Icons.account_circle_outlined),
                     title: Text("내정보"),
@@ -102,18 +83,8 @@ class _MoreState extends State<More> {
                     title: Text("주소록"),
                     onTap: () {},
                   ),
-                  Container(
-                      child: Text(
-                    "이야기",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                  )),
-                  Divider(
-                    height: 10,
-                    thickness: 1,
-                  ),
+                 setTitle("이야기"),
+                  divider(),
                   ListTile(
                     leading: Icon(Icons.account_circle_outlined),
                     title: Text("맥도날드이야기"),
@@ -136,7 +107,7 @@ class _MoreState extends State<More> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    BottomNavi()));
+                                    BottomNavi(4)));
 
                     },
                   ),
@@ -149,38 +120,18 @@ class _MoreState extends State<More> {
               visible: (userInfo == null)?true:false,
               child: Expanded(child: ListView(
                children: <Widget>[
-                 Container(
-                     child: Text(
-                       "계정 설정",
-                       style: TextStyle(
-                           fontSize: 15,
-                           fontWeight: FontWeight.bold,
-                           color: Colors.grey),
-                     )),
-                 Divider(
-                   height: 10,
-                   thickness: 1,
-                 ),
+                 setTitle("계정설정"),
+                 divider(),
                  ListTile(
                    leading: Icon(Icons.login),
                    title: Text("로그인/회원가입"),
                    onTap: () {
-                     Navigator.push(context,
+                     Navigator.pushReplacement(context,
                          MaterialPageRoute(builder: (context) => AuthWidget()));
                    },
                  ),
-                 Container(
-                     child: Text(
-                       "계정 설정",
-                       style: TextStyle(
-                           fontSize: 15,
-                           fontWeight: FontWeight.bold,
-                           color: Colors.grey),
-                     )),
-                 Divider(
-                   height: 10,
-                   thickness: 1,
-                 ),
+                 setTitle("이야기"),
+                 divider(),
                  ListTile(
                    leading: Icon(Icons.account_circle_outlined),
                    title: Text("맥도날드 이야기"),
@@ -203,5 +154,23 @@ class _MoreState extends State<More> {
         ),
       ),
     );
+  }
+
+  Divider divider() {
+    return Divider(
+                  height: 10,
+                  thickness: 1,
+                );
+  }
+
+  Container setTitle(String titleName) {
+    return Container(
+                    child: Text(
+                  titleName,
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),
+                ));
   }
 }

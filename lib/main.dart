@@ -9,44 +9,45 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
-
 class MyApp extends StatelessWidget {
-  //String currentPage = MyHomePage.pageName;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title : "Flutter BottomNavigation",
-      theme:  ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: BottomNavi(),
+      title: "Flutter BottomNavigation",
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: BottomNavi(0),
     );
   }
 }
 
-
-class BottomNavi extends StatefulWidget{
+class BottomNavi extends StatefulWidget {
+  int value =0;
+  BottomNavi(int _value){
+    value= _value;
+  }
   @override
-  State<StatefulWidget> createState() => _BottomNaviState();
-
+  State<StatefulWidget> createState() => _BottomNaviState(value);
 }
-class _BottomNaviState extends State<BottomNavi>{
-  static int _currenttIndex =0;
+
+class _BottomNaviState extends State<BottomNavi> {
+
+  _BottomNaviState(int _currentIndex){
+    _currenttIndex= _currentIndex;
+  }
+  static int _currenttIndex = 0;
   String title;
 
-  final List<Widget> _pages=[Home(),Menu(),Star(),OrderCheck(),More()];
+  final List<Widget> _pages = [Home(), Menu(), Star(), OrderCheck(), More()];
 
-
-  void _onTab(int index){
+  void _onTab(int index) {
     setState(() {
-      _currenttIndex= index;
+      _currenttIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: _pages[_currenttIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -59,96 +60,14 @@ class _BottomNaviState extends State<BottomNavi>{
         currentIndex: _currenttIndex,
         onTap: _onTab,
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "홈"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "홈"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_sharp),
-              label: "메뉴"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.star),
-              label: "즐겨찾기"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.agriculture),
-              label: "주문조회"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.menu),
-              label: "더보기"
-          )
+              icon: Icon(Icons.menu_book_sharp), label: "메뉴"),
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: "즐겨찾기"),
+          BottomNavigationBarItem(icon: Icon(Icons.agriculture), label: "주문조회"),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "더보기")
         ],
       ),
     );
   }
 }
-
-/*body: Center(
-child: _pages[_selectedIndex]),
-bottomNavigationBar: BottomNavigationBar(
-type: BottomNavigationBarType.fixed,
-backgroundColor: Colors.grey,
-selectedItemColor: Colors.white,
-unselectedItemColor: Colors.white.withOpacity(.60),
-selectedFontSize: 14,
-unselectedFontSize: 14,
-currentIndex:  _selectedIndex,
-onTap: (int index){
-setState(() {
-_selectedIndex = index;
-});
-},
-items: [
-BottomNavigationBarItem(
-icon: Icon(Icons.home),
-label: "홈"
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.menu_book_sharp),
-label: "메뉴"
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.star),
-label: "즐겨찾기"
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.agriculture),
-label: "주문조회"
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.menu),
-label: "더보기"
-)
-],
-),
-*/
-
-
-/*
-return MultiProvider(
-providers: [ChangeNotifierProvider(create: (_) => PageNotifier())],
-child: MaterialApp(
-title: 'Flutter Demo',
-home: Consumer<PageNotifier>(
-builder: (context, pageNotifier, child) {
-return Navigator(
-pages: [
-MaterialPage(
-key: ValueKey(MyHomePage.pageName),
-child: MyHomePage(title: 'Flutter Demo Home Page')),
-if (pageNotifier.currentPage == AuthPage.pageName) AuthPage(),
-], //page 는 밑에있을수록 앞에 보임
-onPopPage: (route, result) {
-if (!route.didPop(result)) {
-//지금 이루트가 다끝났어?
-return false;
-}
-return true;
-},
-);
-},
-),
-),
-);*/

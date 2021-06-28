@@ -1,31 +1,98 @@
 import 'package:flutter/material.dart';
 
-
 class Menu extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _MenuState();
 }
 
 class _MenuState extends State<Menu> {
-  final pageName="Menu";
-
+  final pageName = "Menu";
+  List<String> menu_title= ["추천 메뉴","버거 & 세트","스낵 & 사이드", "음료", "디저트"," 해피밀"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-        backgroundColor: Colors.white,
-        leadingWidth: 200.0,
-        leading: FlatButton(
-            onPressed: () => {},
-            child: Row(
-              children: <Widget>[Icon(Icons.chevron_left), Text("배달 주소",style: TextStyle(color: Colors.black,fontSize: 18))],
-            )),
-      ),
-      body:
-      ,
-      // Here we take the value from the MyHomePage object that was created by
-      // the App.build method, and use it to set our appbar title.
-    );
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text("맥딜리버리",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold)),
+        ),
+        body: Container(
+          child: Column(
+            children: <Widget>[
+              FlatButton(
+                padding: EdgeInsets.all(0),
+                onPressed: (){},
+                child: Container(
+                  padding: EdgeInsets.only(left: 10,top: 5,bottom: 5),
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.black54,
+                  height: 70,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("배달 받으실곳",style: TextStyle(color: Colors.grey,fontSize: 12),textAlign: TextAlign.left,),
+                          Text("경상남도 양산시 삼호동 610-0 웅상신도시 푸르지오 110동 701호",overflow: TextOverflow.fade,style: TextStyle(color: Colors.orange,fontSize: 14),textAlign: TextAlign.left,),
+                        ],
+                      ),
+                    ),
+                      Container(width: 100,child: Icon(Icons.repeat))
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 10,top: 5,bottom: 5),
+                width: MediaQuery.of(context).size.width,
+                color: Colors.black,
+                height: 50,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("예상 배달 시간/날짜",style: TextStyle(color: Colors.grey,fontSize: 12),textAlign: TextAlign.left,),
+                    Text("40 - 55분",style: TextStyle(color: Colors.white,fontSize: 12),textAlign: TextAlign.left,)
+                  ],
+                ),
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 3 / 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
+                itemCount: 6,
+                itemBuilder: (BuildContext ctx, index) {
+                  return SizedBox.fromSize(
+                    // button width and height
+                    child: ClipRect(
+                      child: Material(
+                        color: Colors.white, // button color
+                        child: InkWell(
+                          splashColor: Colors.orange, // splash color
+                          onTap: () {}, // button pressed
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.call), // icon
+                              Text(menu_title[index]), // text
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ));
   }
 }
