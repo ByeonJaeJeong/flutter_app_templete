@@ -8,6 +8,7 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   final pageName = "Menu";
   List<String> menu_title= ["추천 메뉴","버거 & 세트","스낵 & 사이드", "음료", "디저트"," 해피밀"];
+  List<String> menu_image= ["assets/cat10_1_ko.jpg","assets/cat11_1_ko.jpg","assets/cat13_1_ko.jpg","assets/cat14_1_ko.jpg","assets/cat15_1_ko.jpg","assets/cat16_1_ko.jpg"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,8 +82,8 @@ class _MenuState extends State<Menu> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Icon(Icons.call), // icon
-                              Text(menu_title[index]), // text
+                              Image.asset(menu_image[index],width: 90), // icon
+                              Text(menu_title[index],style: TextStyle(fontWeight: FontWeight.bold),), // text
                             ],
                           ),
                         ),
