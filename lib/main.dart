@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_templete/login/auth_page.dart';
 import 'package:flutter_app_templete/screen/home.dart';
-import 'package:flutter_app_templete/screen/menu.dart';
+import 'package:flutter_app_templete/screen/menu_list.dart';
+import 'package:flutter_app_templete/screen/menu_select.dart';
+import 'package:flutter_app_templete/screen/menu_title.dart';
 import 'package:flutter_app_templete/screen/more.dart';
 import 'package:flutter_app_templete/screen/order_check.dart';
 import 'package:flutter_app_templete/screen/star.dart';
@@ -38,7 +40,7 @@ class _BottomNaviState extends State<BottomNavi> {
   static int _currenttIndex = 0;
   String title;
 
-  final List<Widget> _pages = [Home(), Menu(), Star(), OrderCheck(), More()];
+  final List<Widget> _pages = [Home(), MenuTitle(), Star(), OrderCheck(), More(),MenuList(),MenuSelect()];
 
   void _onTab(int index) {
     setState(() {
@@ -57,7 +59,7 @@ class _BottomNaviState extends State<BottomNavi> {
         unselectedItemColor: Colors.white.withOpacity(.60),
         selectedFontSize: 14,
         unselectedFontSize: 14,
-        currentIndex: _currenttIndex,
+        currentIndex: (_currenttIndex>4)?1:_currenttIndex,
         onTap: _onTab,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "홈"),

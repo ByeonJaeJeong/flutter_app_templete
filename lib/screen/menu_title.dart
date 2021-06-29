@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_templete/main.dart';
 
-class Menu extends StatefulWidget {
+class MenuTitle extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _MenuState();
+  State<StatefulWidget> createState() => _MenuTitleState();
 }
 
-class _MenuState extends State<Menu> {
+class _MenuTitleState extends State<MenuTitle> {
   final pageName = "Menu";
   List<String> menu_title= ["추천 메뉴","버거 & 세트","스낵 & 사이드", "음료", "디저트"," 해피밀"];
   List<String> menu_image= ["assets/cat10_1_ko.jpg","assets/cat11_1_ko.jpg","assets/cat13_1_ko.jpg","assets/cat14_1_ko.jpg","assets/cat15_1_ko.jpg","assets/cat16_1_ko.jpg"];
@@ -78,7 +79,9 @@ class _MenuState extends State<Menu> {
                         color: Colors.white, // button color
                         child: InkWell(
                           splashColor: Colors.orange, // splash color
-                          onTap: () {}, // button pressed
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavi(5)));
+                          }, // button pressed
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
