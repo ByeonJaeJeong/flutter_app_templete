@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
                     child: Image.asset("assets/mc_order_check_btn.png",width:MediaQuery.of(context).size.width/2,fit: BoxFit.fitWidth,),
                     padding: EdgeInsets.all(0),
                     onPressed: (){
-                      Navigator.pushReplacement(context,  CupertinoPageRoute(builder: (context)=>BottomNavi(3)));
+                      Navigator.pushReplacement(context,  CupertinoPageRoute(builder: (context)=>MyStatefulWidget(3)));
                     },
                   ),
                   ),
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.all(0),
                       child: Image.asset("assets/mc_order_btn.png",width:MediaQuery.of(context).size.width/2,fit: BoxFit.fitWidth,),
                       onPressed: (){
-                        Navigator.pushReplacement(context,  CupertinoPageRoute(builder: (context)=>BottomNavi(1)));
+                        Navigator.pushReplacement(context,  CupertinoPageRoute(builder: (context)=>MyStatefulWidget(1)));
                       },
                     ),
                   )

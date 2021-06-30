@@ -162,7 +162,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                           else {
                            await storage.write(key: "loginId", value: _emailController.text.toString());
                            Navigator.of(context).maybePop();
-                           Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>BottomNavi(4)));
+                           Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>MyStatefulWidget(4)));
 
                           }
 
@@ -189,17 +189,17 @@ class _AuthWidgetState extends State<AuthWidget> {
                     children: [
                       _buildSocialButton('assets/google_icon.png', () async{
                         await storage.write(key: "loginId", value: "google");
-                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>BottomNavi(4)));
+                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>MyStatefulWidget(4)));
 
                       }),
                       _buildSocialButton('assets/instagram_icon.png', () async{
                         await storage.write(key: "loginId", value: "insta");
-                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>BottomNavi(4)));
+                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>MyStatefulWidget(4)));
 
                       }),
                       _buildSocialButton('assets/facebook_icon.png', () async{
                         await storage.write(key: "loginId", value: "facebook");
-                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>BottomNavi(4)));
+                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>MyStatefulWidget(4)));
 
                       })
                     ],

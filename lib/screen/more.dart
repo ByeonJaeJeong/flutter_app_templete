@@ -107,7 +107,7 @@ class _MoreState extends State<More> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    BottomNavi(4)));
+                                    MyStatefulWidget(4)));
 
                     },
                   ),

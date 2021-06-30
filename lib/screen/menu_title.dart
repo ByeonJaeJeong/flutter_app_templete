@@ -80,7 +80,7 @@ class _MenuTitleState extends State<MenuTitle> {
                         child: InkWell(
                           splashColor: Colors.orange, // splash color
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavi(5)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => MyStatefulWidget(5)));
                           }, // button pressed
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
